@@ -7,31 +7,60 @@ use Illuminate\Http\Request;
 
 class BibliografiKategoriController extends Controller
 {
-    public function Store(Request $request) {
-        $bibliografiKategori = new BibliografiKategori;
-        $bibliografiKategori->deskripsi = 'Bibliografi Selektif';
-        if ($bibliografiKategori->save()) {
-            return 'Data Bibliografi Kategori Tersimpan';
-        }
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $data['bibliografiKategori'] = BibliografiKategori::latest()->paginate(10);
+        return view('bibliografiKategori.index', $data);
     }
 
-    public function Display() {
-        $data['records'] = BibliografiKategori::with('Bibliografi')->get();
-        return view('display_bibliografi_kategori', $data);
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('bibliografiKategori.create');
     }
 
-    public function Edit($id, $deskripsi) {
-        $bibliografiKategori = BibliografiKategori::find($id);
-        $bibliografiKategori->deskripsi = $deskripsi;
-        $bibliografiKategori->save();
-
-        return 'Data urutan ' . $bibliografiKategori->id . " telah diganti dengan " . $bibliografiKategori->deskripsi;
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
     }
 
-    public function Delete($id) {
-        $bibliografiKategori = BibliografiKategori::find($id);
-        $bibliografiKategori->delete();
+    /**
+     * Display the specified resource.
+     */
+    public function show(BibliografiKategori $bibliografiKategori)
+    {
+        //
+    }
 
-        return 'Data urutan ' . $id . " telah dihapus";
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(BibliografiKategori $bibliografiKategori)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, BibliografiKategori $bibliografiKategori)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(BibliografiKategori $bibliografiKategori)
+    {
+        //
     }
 }
