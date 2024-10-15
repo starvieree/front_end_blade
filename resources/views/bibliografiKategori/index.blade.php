@@ -19,6 +19,8 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Deskripsi</th>
+                    <th scope="col">Create At</th>
+                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +28,7 @@
                     <tr>
                         <td>{{ $kategori->id }}</td>
                         <td>{{ $kategori->deskripsi }}</td>
+                        <td>{{ $kategori->created_at->format('d-m-Y') }}</td>
                         <td>
                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                 action="{{ route('bibliografiKategori.destroy', $kategori->id) }}" method="POST">

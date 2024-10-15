@@ -11,6 +11,8 @@ class BibliografiKategori extends Model
 
     protected $table = 'bibliografi_kategori';
 
+    protected $fillable = ['deskripsi'];
+
     public function Bibliografi()
     {
         return $this->hasMany(Bibliografi::class);

@@ -11,6 +11,15 @@ class Bibliografi extends Model
 
     protected $table = 'bibliografi';
 
+    protected $fillable = [
+        'isbn',
+        'judul',
+        'penulis',
+        'harga',
+        'perolehan',
+        'bibliografi_kategori_id',
+    ];
+
     public function Kategori()
     {
         return $this->belongsTo(BibliografiKategori::class, 'bibliografi_kategori_id');

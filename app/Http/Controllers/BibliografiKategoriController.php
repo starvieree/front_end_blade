@@ -29,7 +29,17 @@ class BibliografiKategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'deskripsi' => 'required|string|max:255'
+        ]);
+
+        $bibliografiKategori = BibliografiKategori::create([
+            'deskripsi' => $request->deskripsi
+        ]);
+
+        return redirect()
+            ->route('bibliografiKategori.index')
+            ->with('message', 'New user created successfully');
     }
 
     /**
@@ -45,7 +55,7 @@ class BibliografiKategoriController extends Controller
      */
     public function edit(BibliografiKategori $bibliografiKategori)
     {
-        //
+        return view('bibliografiKategori.edit', compact('bibliografiKategori'));
     }
 
     /**
@@ -53,7 +63,17 @@ class BibliografiKategoriController extends Controller
      */
     public function update(Request $request, BibliografiKategori $bibliografiKategori)
     {
-        //
+        $request->validate([
+            'deskripsi' => 'required|string|max:255'
+        ]);
+
+        $bibliografiKategori->deskripsi = $request->deskripsi;
+
+        $bibliografiKategori->save();
+
+        return redirect()
+            ->route('bibliografiKategori.index')
+            ->with('message', 'Bibliografi kategori updated successfully');
     }
 
     /**
@@ -61,6 +81,9 @@ class BibliografiKategoriController extends Controller
      */
     public function destroy(BibliografiKategori $bibliografiKategori)
     {
-        //
+        $bibliografiKategori->delete();
+        return redirect()
+            ->route('bibliografiKategori.index')
+            ->with('message', 'Bibliografi kategori deleted successfully');
     }
 }
